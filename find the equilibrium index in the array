@@ -1,0 +1,55 @@
+/* Find the Equilibrium index in the array
+equilibrium index is where the right sum equal to left sum that index is equilibrium
+
+Given an array A of n positive numbers. The task is to find the first Equilibium Point in the array. 
+Equilibrium Point in an array is a position such that the sum of elements before it is equal to the sum of elements after it.
+Example 1:
+Input:
+n = 5
+A[] = {1,3,5,2,2}
+Output: 2     */
+
+
+  // find the quilibrium index in the array
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+  int n,i;
+  cin>>n;
+  int arr[n];
+  
+  for(i=0;i<n;i++)  // store elements into array
+    cin>>arr[i];
+    
+  // create prefix array
+  
+  int prefix[n];
+  prefix[0]=arr[0];
+  
+  for(i=1;i<n;i++)   // store prefix sum into prefix arr
+    prefix[i]=prefix[i-1]+arr[i];
+    
+    
+    // take left, right sum =0
+    int ls=0, rs=0, flag=0, eqindex;  // flag for ele is found or not
+    
+    for(i=1;i<n;i++)
+    {
+        ls=prefix[i-1];
+        rs=prefix[n-1]-prefix[i];
+        
+        if(ls == rs)
+        {
+            flag=1;
+            eqindex=i;
+            break;
+        }
+    }
+    if(flag)
+        cout<<eqindex;
+    else
+        cout<<-1;
+        
+    return 0;
+}
