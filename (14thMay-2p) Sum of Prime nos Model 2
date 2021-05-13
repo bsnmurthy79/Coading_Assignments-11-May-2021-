@@ -1,0 +1,59 @@
+    // sum of prime nos between l and r SECOND MODEL 
+#include<iostream>
+using namespace std;
+long long int N=1000000;
+long long int seive[1000000];
+class Solution
+{
+
+    public:
+    void gen_sevier()
+    {
+                
+         for(int i=0;i<N;i++)
+        {
+            seive[i]=1;
+        }
+        seive[0]=seive[1]=0;
+        
+        for(int i=2;i*i<N; i++)
+        {
+            if(seive[i]==1)
+            {
+                for(int j=i*i; j<=N;j+=i)
+                {
+                    seive[j]=0;
+                }
+            }
+        }
+        
+    }
+};
+
+int main()
+{
+    Solution ob;
+    ob.gen_sevier(); // call seiver method
+    
+    int n,t;
+    cin>>t;
+    while(t--)
+    {
+        int l,r;
+        cin>>l>>r;
+        if( (l>=1 && l<=1000000) && (r>=1 && r<=1000000) )
+        {
+            int sum=0;
+            for(int i=l; i<=r; i++)
+            {
+                if(seive[i]==1)
+                {
+                    sum+=i;
+                    //cout<<"  "<<i;
+                }
+            }
+            cout<<sum;
+        }
+    }
+    return 0;
+}
