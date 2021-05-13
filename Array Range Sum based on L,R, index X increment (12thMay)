@@ -1,0 +1,87 @@
+/*                        Sum of array values in the given L, R, index based on X increment using prefixsum 
+Explanation :
+Input:
+n = 5
+arr values = 2 7 8 11 3
+Queries = 3
+L, R, X values (L=start index, R=end index, X=increment value)
+0 4 2   (0 to 4 index increment by 2)
+1 3 4   (1 to 3 index increment by 4)
+2 4 6   (2 to 4 index increment by 6)
+
+Output:
+arr values = 2 7 8 11 3
+prefix arr values = 2 4 6 0 -4
+prefix sum values = 2 6 12 12 8
+
+final sum arr values = 4 13 20 23 11 */
+
+/* input and output
+5                                                                                                                                                          
+2 7 8 11 3                                                                                                                                                 
+3                                                                                                                                                          
+0 4 2                                                                                                                                                      
+1 3 4                                                                                                                                                      
+2 4 6                                                                                                                                                      
+                                                                                                                                                        
+4 13 20 23 11     */
+
+
+#include <iostream>
+using namespace std;
+
+int main()
+{
+
+    int n;
+    cin>>n;
+    
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        cin>>arr[i];
+    }
+    
+    int prefix[n+1]={0};
+    
+    int Q;
+    cin>>Q;
+    while(Q--)
+    {
+        int l, r, x;
+        
+        cin>>l>>r>>x;
+        prefix[l]+= x;
+        prefix[r+1]-= x;
+        
+    }
+    /*
+    cout<<endl;
+    for(int i=0;i<n;i++)    // it displays only x values based on l, r in prefix array
+     cout<<prefix[i]<<" ";  */
+     
+     cout<<endl;
+     for(int i=1;i<n;i++)   // the prefix array stores prefixsum values
+     {
+         prefix[i]=prefix[i-1]+prefix[i];
+     }
+
+    /*
+    cout<<endl;
+    for(int i=0;i<n;i++)    // it displays prfixsums in the prefix array
+     cout<<prefix[i]<<" ";   */
+    
+    
+    for(int i=0;i<n;i++)        // arr stors sum of prefixsum and arr values
+    {
+        arr[i]=prefix[i]+arr[i];
+        
+    }
+    
+    cout<<endl;
+    for(int i=0;i<n;i++)    // it displays sum of index based on l, r, with x increment
+     cout<<arr[i]<<" ";
+    
+    return 0;
+}
