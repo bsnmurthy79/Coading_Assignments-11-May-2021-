@@ -69,3 +69,13 @@ int main()
         auto ans=ob.longestCommonSum(arr1, arr2, n);
             cout<<ans;
     }
+
+    return 0;
+}
+
+/* 
+1                                                                                                                                                        
+6                                                                                                                                                        
+0 1 0 0 0 0                                                                                                                                              
+1 0 1 0 0 1                                                                                                                                              
+4  */
