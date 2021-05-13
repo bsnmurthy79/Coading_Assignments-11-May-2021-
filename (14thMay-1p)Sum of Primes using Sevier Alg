@@ -1,0 +1,70 @@
+          // Sum of Primes
+          
+          /* Sum of primes between l, r using seiver algoth 
+          
+          l>=1 && l<=1000000 && (r>=1 && r<=1000000  */
+          
+  /* input 
+  2  test cases
+1 6  l, r
+4 13 l, r
+
+output: 
+10  (primes 1 to 6 is 2+3+5=10)
+36   */
+
+#include<iostream>
+using namespace std;
+long long int N=1000000;
+long long int seive[1000000];
+
+void gen_sevier()
+{
+                
+         for(int i=0;i<N;i++)
+        {
+            seive[i]=1;
+        }
+        seive[0]=seive[1]=0;
+        
+        for(int i=2;i*i<N; i++)
+        {
+            if(seive[i]==1)
+            {
+                for(int j=i*i; j<=N;j+=i)
+                {
+                    seive[j]=0;
+                }
+            }
+        }
+        
+}
+
+int main()
+{
+    gen_sevier(); // call seiver method
+    
+    int n,t;
+    cin>>t;
+    while(t--)
+    {
+        int l,r;
+        cin>>l>>r;
+        if( (l>=1 && l<=1000000) && (r>=1 && r<=1000000) )
+        {
+            int sum=0;
+            for(int i=l; i<=r; i++)
+            {
+                if(seive[i]==1)
+                {
+                    sum+=i;
+                    //cout<<"  "<<i;
+                }
+            }
+            cout<<sum;
+        }
+    }
+    return 0;
+}
+        
+
