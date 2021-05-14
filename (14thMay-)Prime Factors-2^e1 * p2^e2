@@ -1,0 +1,91 @@
+                 //Simple Prime Factorization
+/* Input
+The first line will contain an integer t (1<=t<=10^6) denoting number of test case.
+For each test case, you will be given an integer n (2<=n<=10^6).
+
+Output
+Print a string showing prime factors which should look like :
+2^e1 * p2^e2 * .........* pk^ek
+where p1, p2, ...., pn are the prime factors and e1, e2, ....., en is the degree of corresponding prime factor.
+Note: power of 2 should always be given. For a prime number , only 2^0 is printed. */
+
+/* Sample Input
+3   test cases
+32  
+100
+9085
+Sample Output
+2^5 
+2^2*5^2
+2^0*5^1*23^1*79^1   */
+
+#include <iostream>
+using namespace std;
+//  print  primes
+long long int N=1000000;
+       long long int seive[1000000];
+   void gen_seive()
+   {
+       
+       
+       for(int i=0;i<N;i++)
+       {
+           seive[i]=1;
+       }
+       
+       seive[0]=seive[1]=0;
+       
+       for(int i=2;i*i<N;i++)
+       {
+           if(seive[i]==1)
+           {
+               for(int j=i*i;j<=N;j+=i)
+               {
+                   seive[j]=0;
+               }
+           }
+       }
+   }
+int main()
+{
+    gen_seive();
+   
+    int n,temp[1000000],c,k=2,i;
+    
+   
+    for(i=2;i<=N;i++)
+    {
+        if(seive[i]==1)
+        {   
+            temp[k]=i;
+            k++;
+        } 
+     
+     
+    }
+    int Q;
+    cin>>Q;
+    while(Q--)
+    {
+   cin>>n;
+   for(i=2 ;i<=k && n!=1 ;i++)
+    {   
+      if (n%temp[i]==0)
+        {  
+            c=0;
+            while(n%temp[i]==0)
+            { 
+                n=n/temp[i];
+                c++;
+            }
+          cout<<temp[i]<<"^"<<c<<"*"; 
+        }
+        
+        
+       
+        
+    }
+   cout<<n<<"\n";
+    }
+    return 0;
+}
