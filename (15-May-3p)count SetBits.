@@ -1,0 +1,51 @@
+/* Number of 1 Bits
+Given a positive integer N, print count of set bits in it. 
+
+Example 1:
+
+Input:
+N = 6
+Output:
+2
+Explanation:
+Binary representation is '110' 
+So the count of the set bit is 2. */
+
+
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution
+{
+    public:
+        int setBits(int N)
+        {
+            int count=0;
+            while(N!=0)
+            {
+                count+=N&1;
+                N= N>>1;
+            }
+            return count;
+        }
+       
+       
+};
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        long long int N;
+        cin>>N;
+        
+        Solution ob;
+        int cnt=ob.setBits(N);
+        cout<<cnt<<endl;
+    }
+    return 0;
+}
