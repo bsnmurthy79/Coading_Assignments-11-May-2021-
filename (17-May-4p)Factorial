@@ -1,0 +1,57 @@
+  
+//  FACTORIAL OF GIVEN NOS
+/*Given an integer N, print the factorial of the N (mod ).
+
+Input:
+First line contains one integer, T, number of test cases.
+Each test case contains one integer, N.
+
+Output:
+For each test case you need to print the factorial of N (mod ).
+
+Constraints:
+
+
+Sample Input
+5
+1
+2
+3
+4
+5
+Sample Output
+1
+2
+6
+24
+120
+*/
+
+#include <iostream>
+
+using namespace std;
+
+long long int fact(long long int n)
+{
+  if(n==1)
+    return 1;
+  else
+    return n*fact(n-1);
+}
+int main() 
+{
+ long long int n, t;
+ cin>>t;
+
+  if(t>=1 && t<=100000)
+  {
+      while(t--)
+      {
+        cin>>n;
+       cout<<fact(n)<<endl;
+    
+      }
+   
+   }
+  } 
+ 
