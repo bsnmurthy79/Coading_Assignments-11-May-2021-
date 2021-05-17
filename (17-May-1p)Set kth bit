@@ -1,0 +1,76 @@
+          // Set kth bit
+/* Given a number N and a value K. From the right, set the Kth bit in the binary representation of N. The position of Least Significant Bit(or last bit) is 0, the second last bit is 1 and so on. 
+
+Example 1:
+
+Input:
+N = 10 
+K = 2
+Output:
+14
+Explanation:
+Binary representation of the given number
+10 is: 1 0 1 0, number of bits in the 
+binary reprsentation is 4. Thus 2nd bit from right is 0. The number after changing
+this bit to 1 is: 14(1 1 1 0). */
+
+
+// { Driver Code Starts
+#include<bits/stdc++.h> 
+using namespace std; 
+
+ // } Driver Code Ends
+class Solution
+{
+public:
+    int setKthBit(int N, int K)
+    {
+        // Write Your Code here
+      int n=N, k=K;    
+        vector<int> bin;
+    int c=0;
+    while(n!=0)
+    {
+        if(c==k)
+        {
+            bin.push_back(1);
+            n = n>>1;
+        }
+         bin.push_back(n&1);
+        
+        n = n>>1;
+        c++;
+    }
+       int dec=0,b=1, rem;
+      
+    for(auto  it:bin) 
+    {
+        rem = it;
+        dec = dec + rem * b;
+        b *= 2;
+    }
+    //cout<<dec;
+    return dec;
+    }
+    
+};
+
+
+
+
+// { Driver Code Starts.
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        int N, K;
+        cin >> N >> K;
+        
+        Solution ob;
+        int ans = ob.setKthBit(N,K);
+        cout << ans << endl;
+    }
+    return 0;
+}  // } Driver Code Ends
