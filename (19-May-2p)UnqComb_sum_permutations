@@ -1,0 +1,86 @@
+// Unique combinations of Sum
+/* Given a collection of candidate numbers (candidates) and a target number (target), find all unique combinations in candidates where the candidate numbers sum to target.
+Each number in candidates may only be used once in the combination.
+Note: The solution set must not contain duplicate combinations.
+ 
+Example 1:
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: 
+[1,1,6],
+[1,2,5],
+[1,7],
+[2,6]
+   */
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+ 
+
+void unique_combination(int l, int sum, int K,             vector<int>& local,
+                        vector<int>& A)
+{
+    // If a unique combination is found
+    if (sum == K) {
+        
+        for (int i = 0; i < local.size(); i++)
+        {
+            cout << local[i]<<" ";
+        }
+        cout << endl;
+        return;
+    }
+ 
+    // For all other combinations
+    for (int i = l; i < A.size(); i++)
+    {
+ 
+        // Check if the sum exceeds K
+        if (sum + A[i] > K)
+            continue;
+ 
+        // Check if it is repeated or not
+        if (i > l and A[i] == A[i - 1])
+            continue;
+ 
+        // Take the element into the combination
+        local.push_back(A[i]);
+ 
+        // Recursive call
+        unique_combination(i + 1, sum + A[i], K, local, A);
+ 
+        // Remove element from the combination
+        local.pop_back();
+    }
+}
+ 
+// Function to find all combination
+// of the given elements
+void Combination(vector<int> A, int K)
+{
+    // Sort the given elements
+    sort(A.begin(), A.end());
+ 
+    // To store combination
+    vector<int> local;
+ 
+    unique_combination(0, 0, K, local, A);
+}
+ 
+// Driver code
+int n, target;
+int main()
+{
+    
+ cin>>n>>target;
+ 
+ vector<int> v(n);
+for(vector<int>::size_type i = 0; i < n; i++)
+    cin >> v[i];
+    
+ 
+    // Function call
+    Combination(v, target);
+ 
+    return 0;
+}
