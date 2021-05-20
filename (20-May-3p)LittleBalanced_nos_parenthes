@@ -1,0 +1,54 @@
+    // Little Monk and Balanced Parentheses
+/* Open parentheses must be closed by the same type of parentheses. Open parentheses must be closed in the correct order, i.e., never close an open pair before its inner pair is closed (if it has an inner pair). Thus,  is balanced, while  is not balanced.
+
+You have to find out the length of the longest subarray that is balanced.
+
+Input Format:
+First line contains an input N , denoting the number of parentheses. Second line contains N space separated integers.   denoting the  parentheses of the array.
+
+Output Format:
+Print the length of the longest subarray that is balanced.
+
+SAMPLE INPUT 
+5
+1 -1 2 3 -2
+SAMPLE OUTPUT 
+2  */
+
+    // Balanced 
+#include <bits/stdc++.h>
+#include <iostream>
+using namespace std;
+ 
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n+1];
+    for(int i=1;i<=n;i++)
+        cin>>a[i];
+        
+    stack<int> st;
+    st.push(0);  // initially push 0
+    int len=0;
+    for(int i=1; i<=n;i++)
+    {
+        if(a[i]>0)  // positive index then push to stack
+        {
+            st.push(i);    
+            continue;
+        }
+        if(st.top() ==  -1 * (a[i])) // negative index then pop 
+        {
+            st.pop();
+            len=max(len, i-st.top());
+        
+        }
+        else
+        {
+            st.push(i);
+        }
+    }
+    cout<<len<<endl;
+    return 0;
+}
