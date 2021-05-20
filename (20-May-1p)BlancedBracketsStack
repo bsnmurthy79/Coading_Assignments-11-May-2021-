@@ -1,0 +1,82 @@
+          //Balanced Brackets using Stack in cpp ex: {[]}
+/* A bracket is considered to be any one of the following characters: (, ), {, }, [, or ].
+Given  strings of brackets, determine whether each sequence of brackets is balanced.
+If a string is balanced, return YES. Otherwise, return NO.
+Sample Input
+n = 3 
+{[()]} 
+{[(])} 
+{{[[(())]]}} 
+Sample Output
+YES
+NO
+YES
+Explanation
+The string {[()]} meets both criteria for being a balanced string.
+The string {[(])} is not balanced because the brackets enclosed by the matched pair { and } are not balanced: [(]).
+The string {{[[(())]]}} meets both criteria for being a balanced string. */
+
+ // Balanced Brackets using STACK ex: [{}]
+
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        string s;
+        cin>>s;
+        stack<char>st;
+        int flag=1;
+        for(auto i:s)
+        {
+           
+           if(i=='[' || i=='{' || i=='(')
+           {
+               st.push(i);   // push open bracket into stack
+           }
+           else
+           {
+               if(i==']' &&  st.top()=='[')
+               {
+                   st.pop();
+               }
+               else if(i=='}'  && st.top()=='{')
+               {
+                   st.pop();
+               }
+               else if(i==')'  && st.top()=='(')
+               {
+                   st.pop();
+               }
+               else
+               {
+                   flag=0;
+                   break;
+                 
+               }
+           }
+           
+        }
+        
+            if(st.size()!=0 ||  flag==0)
+           {
+               cout<<"NO";
+           }
+           else
+           {
+               cout<<"YES";
+           }
+        /*for(auto i:s)
+        {
+            
+            cout<<st.top()<<" ";
+            st.pop();
+        }*/
+    }
+    return 0;
+}
