@@ -1,0 +1,70 @@
+  // Min Steps to REACH START TO END using Array BFS model
+  /* Input:
+            start = 2
+            end = 24 (reach)
+            Array = [2, 3, 6]
+    Output:
+            2 ways  
+            
+    Explanation:
+                1-Way(2 x 3 = 6, 6x2=12, 12x2=24(reach)
+                2-Way(2 x 2 = 4, 4x6=24(reach)  
+            */
+            
+            
+#include <iostream>
+#include <bits/stdc++.h>
+
+using namespace std;
+void BFS(int n, int start, int end, int a[])
+{
+    //step1 always create q
+    queue<pair<int,int>>qe ; // create q with store pairs
+    qe.push({start, 0});
+    
+    // step2. create a hash array which gives clariry on visition
+    int vis[1000000]={0};
+        vis[start]=1;
+        
+    //step3. try out all the combinations
+    while(!qe.empty())
+    {
+        auto it=qe.front();
+        int num=it.first;// present start
+        int steps=it.second;
+        qe.pop();
+        
+        //step4. bring all the elements in array and get new starts
+        for(int i=0;i<n;i++)
+        {
+            int newstart=(num*a[i])%1000000;
+            if(newstart==end)
+            {
+                cout<<steps+1;
+                return;
+            }
+            if(!vis[newstart])
+            {
+                vis[newstart]=1;
+                qe.push({newstart, steps+1});
+            }
+        }
+    }
+}
+int main()
+{
+    int start, end, n;  // start to reach end how many ways
+    
+    cin>>start>>end>>n;
+    
+    int a[n];
+    
+    for(int i=0; i<n; i++)
+        cin>>a[i];
+        
+    // call bfs function
+    BFS(n, start, end, a);
+    
+
+    return 0;
+}
