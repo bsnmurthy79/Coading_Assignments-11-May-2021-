@@ -1,0 +1,44 @@
+        // BUBBLE sort using optimazation technique
+
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+void bubbleSortOptimization(int a[])
+{
+    int swapped=0;
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=0;j<n-i-1;j++)
+        {
+            if(a[j]>a[j+1])
+            {
+                swap(a[j], a[j+1]);
+                swapped=1;
+            }
+        }
+        if(swapped==0)
+        {
+            break;
+        }
+    }
+}
+
+int main()
+{
+    
+    cin>>n;
+    
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+        
+    bubbleSortOptimization(arr);
+    
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+    
+
+    return 0;
+}
