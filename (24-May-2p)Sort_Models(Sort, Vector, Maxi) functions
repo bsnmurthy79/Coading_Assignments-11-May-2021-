@@ -1,0 +1,49 @@
+        // Sorting using VECTOR , SORT, MATH  METHOD
+        
+
+#include <iostream>
+#include <algorithm>
+#include <bits/stdc++.h>
+using namespace std;
+int n;
+
+int main()
+{
+    
+    cin>>n;
+    
+    int arr[n];
+    for(int i=0;i<n;i++)
+        cin>>arr[i];
+        
+    cout<<"\nAscending order"<<endl;
+    sort(arr, arr+n);  // ascending sort using SORT FUNCTION
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+    
+    cout<<"\nDescending order"<<endl;
+    sort(arr, arr+n, greater<int>());   // descending sort using SORT FUNCTION
+    for(int i=0;i<n;i++)
+        cout<<arr[i]<<" ";
+    
+    cout<<"\nAescending order using VECTOR "<<endl;     //sort using VECTOR
+   vector<int> ve(arr, arr + sizeof(arr) / sizeof(int));
+    //vector<int>ve={12, 11, 9, 50,20};
+    sort(ve.begin(), ve.end());
+    for(auto i:ve)
+    {
+        cout<<i<<" ";
+    }
+    
+    cout<<"\nDescending order using VECTOR "<<endl;     //sort using VECTOR
+    sort(ve.begin(), ve.end(), greater<int>()); //descending order VECTOR
+    for(auto i:ve)
+    {
+        cout<<i<<" ";
+    }
+    
+    int a[]={30,10,20,5};  
+    int maxi=*max_element(a, a+4);  // find  max element 
+    cout<<"\nMax Element :"<<maxi;
+    return 0;
+}
